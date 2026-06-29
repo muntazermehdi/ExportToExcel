@@ -23,11 +23,17 @@ namespace ExportToExcel
         #region EventHandlers
         private void btnLoadDBList_Click(object sender, EventArgs e)
         {
-            cmbDBList.DisplayMember = "Name";
-            cmbDBList.ValueMember = "Name";
-            cmbDBList.DataSource = GetAllDBList(txtServerName.Text, txtUserName.Text, txtPassword.Text);
 
-
+            if (String.IsNullOrEmpty(txtServerName.Text) || String.IsNullOrEmpty(txtUserName.Text) || String.IsNullOrEmpty( txtPassword.Text))
+            {
+                MessageBox.Show("Please enter DB Server Name, User Name and Password.");
+            }
+            else 
+            {
+                cmbDBList.DisplayMember = "Name";
+                cmbDBList.ValueMember = "Name";
+                cmbDBList.DataSource = GetAllDBList(txtServerName.Text, txtUserName.Text, txtPassword.Text);
+            }
         }
         private void cmbDBList_SelectedIndexChanged(object sender, EventArgs e)
         {
